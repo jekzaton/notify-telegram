@@ -35,7 +35,7 @@ async function checkBookingAndNotify() {
       FROM prefix_r_bookings b
       LEFT JOIN prefix_r_room r ON r.room_id = b.room_id
       LEFT JOIN opduser u on u.loginname = b.organization_id
-      WHERE b.startDate = ?`, [todayStr]);
+      WHERE b.startDate = ? AND b.endTime >= CURRENT_TIME `, [todayStr]);
 
     console.log('📥 ผลลัพธ์จากฐานข้อมูล:', rows);
 
